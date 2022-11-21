@@ -4,7 +4,7 @@
 
 int main()
 {
-    std::string nama;
+    std::string name;
     int nameIndex = 0;
     int x;
     int loop = 0;
@@ -27,7 +27,7 @@ int main()
         else if (mainMenu == 2)
         {
             printf("Output Data Data \n");
-            // std::cout << name << std::endl;
+            std::cout << name << std::endl;
         }
         else
         {
