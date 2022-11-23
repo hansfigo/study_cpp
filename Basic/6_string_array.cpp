@@ -6,12 +6,15 @@ using namespace std;
 int main()
 {
     string name[1000];
-    int nameIndex;
+    int nameLenght =  sizeof(name) / sizeof(int);
+    int nameIndex = 0;
     int jmlData;
     int x;
     int loop = 0;
     int mainMenu;
     int nameLengh;
+
+    printf("MAIN");
 
     while (loop == 0)
     {
@@ -28,14 +31,15 @@ int main()
             for (size_t i = 0; i < jmlData; i++)
             {
                 printf("Masukan Nama = ");
-                cin >> name[i];
+                cin >> name[nameIndex];
+                nameIndex++;
             }
         }
 
         else if (mainMenu == 2)
         {
             printf("Output Data Data \n");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < nameLengh ; i++)
             {
                 std::cout << name[i] << std::endl;
             }
