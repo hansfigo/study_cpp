@@ -1,33 +1,48 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
 
 int main()
 {
-    std::string name;
-    int nameIndex = 0;
+    string name[1000];
+    int nameIndex;
+    int jmlData;
     int x;
     int loop = 0;
     int mainMenu;
+    int nameLengh;
 
     while (loop == 0)
     {
         std::cout << "PILIH MENU : " << std::endl;
         std::cout << "1.Input Data " << std::endl;
         std::cout << "2.Output Data " << std::endl;
+        std::cout << "3.Keluar " << std::endl;
         std::cin >> mainMenu;
 
         if (mainMenu == 1)
         {
-            printf("Input Data\n");
-            printf("Nama = \n");
-            // std::cin >> name[0];
+            printf("Input Data Banyak Data = ");
+            cin >> jmlData;
+            for (size_t i = 0; i < jmlData; i++)
+            {
+                printf("Masukan Nama = ");
+                cin >> name[i];
+            }
         }
 
         else if (mainMenu == 2)
         {
             printf("Output Data Data \n");
-            std::cout << name << std::endl;
+            for (int i = 0; i < 3; i++)
+            {
+                std::cout << name[i] << std::endl;
+            }
+        }
+        else if (mainMenu == 3)
+        {
+            return 0;
         }
         else
         {
@@ -36,7 +51,6 @@ int main()
 
         printf("Input 0 untuk kembali ke main menu\n");
         std::cin >> loop;
-
     }
 
     return 0;
