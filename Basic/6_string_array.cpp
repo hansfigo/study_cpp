@@ -6,15 +6,11 @@ using namespace std;
 int main()
 {
     string name[1000];
-    int nameLenght =  sizeof(name) / sizeof(int);
+    int nameLenght = sizeof(name) / sizeof(int);
     int nameIndex = 0;
     int jmlData;
-    int x;
     int loop = 0;
     int mainMenu;
-    int nameLengh;
-
-    printf("MAIN");
 
     while (loop == 0)
     {
@@ -30,8 +26,10 @@ int main()
             cin >> jmlData;
             for (size_t i = 0; i < jmlData; i++)
             {
+                cout << nameIndex;
                 printf("Masukan Nama = ");
-                cin >> name[nameIndex];
+                cin.ignore();
+                getline(cin, name[nameIndex]);
                 nameIndex++;
             }
         }
@@ -39,7 +37,7 @@ int main()
         else if (mainMenu == 2)
         {
             printf("Output Data Data \n");
-            for (int i = 0; i < nameLengh ; i++)
+            for (int i = 0; i < nameIndex; i++)
             {
                 std::cout << name[i] << std::endl;
             }
@@ -54,6 +52,7 @@ int main()
         }
 
         printf("Input 0 untuk kembali ke main menu\n");
+
         std::cin >> loop;
     }
 
