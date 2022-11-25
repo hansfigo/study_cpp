@@ -52,7 +52,6 @@ int main()
         }
 
         printf("Input 0 untuk kembali ke main menu\n");
-
         std::cin >> loop;
     }
 
