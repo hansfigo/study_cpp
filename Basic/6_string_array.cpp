@@ -3,14 +3,17 @@
 
 using namespace std;
 
-string name[1000];
-string nim[1000];
+string name[100];
+string nim[100];
+string namaMatkul[100][100];
+int nilaiMatkul[100][100];
 int mainIndex = 0;
 int banyakData;
 int loop = 0;
 int mainMenu;
 
 void addData(int banyakData);
+void addMatkul(int banyakData);
 void OutputData();
 
 int main()
@@ -27,9 +30,13 @@ int main()
         // USER INPUT DATA
         if (mainMenu == 1)
         {
-            printf("Input Data Banyak Data = ");
+            printf("Input Banyak Data = ");
             cin >> banyakData;
             addData(banyakData);
+
+            printf("Input Banyak Matkul = ");
+            cin >> banyakData;
+            addMatkul(banyakData);
         }
 
         // USER SHOW DATA
@@ -37,6 +44,8 @@ int main()
         {
             showData();
         }
+
+        //USER EXIT PROGRAM
         else if (mainMenu == 3)
         {
             return 0;
@@ -58,15 +67,23 @@ void addData(int banyakData)
     for (size_t i = 0; i < banyakData; i++)
     {
         cin.ignore();
-        cout << mainIndex;
-        printf("Masukan Nama = ");
+        cout << mainIndex + 1;
+        printf(" Masukan Nama = ");
         getline(cin, name[mainIndex]);
 
         printf("Masukan NIM = ");
         getline(cin, nim[mainIndex]);
         mainIndex++;
-
     }
+}
+
+void addMatkul(int banyakData){
+    for (size_t i = 0; i < banyakData; i++)
+    {
+        cin.ignore();
+        
+    }
+    
 }
 
 void showData()
