@@ -3,14 +3,18 @@
 
 using namespace std;
 
+string name[1000];
+string nim[1000];
+int mainIndex = 0;
+int banyakData;
+int loop = 0;
+int mainMenu;
+
+void addData(int banyakData);
+void OutputData();
+
 int main()
 {
-    string name[1000];
-    int nameLenght = sizeof(name) / sizeof(int);
-    int nameIndex = 0;
-    int jmlData;
-    int loop = 0;
-    int mainMenu;
 
     while (loop == 0)
     {
@@ -20,27 +24,18 @@ int main()
         std::cout << "3.Keluar " << std::endl;
         std::cin >> mainMenu;
 
+        // USER INPUT DATA
         if (mainMenu == 1)
         {
             printf("Input Data Banyak Data = ");
-            cin >> jmlData;
-            for (size_t i = 0; i < jmlData; i++)
-            {
-                cout << nameIndex;
-                printf("Masukan Nama = ");
-                cin.ignore();
-                getline(cin, name[nameIndex]);
-                nameIndex++;
-            }
+            cin >> banyakData;
+            addData(banyakData);
         }
 
+        // USER SHOW DATA
         else if (mainMenu == 2)
         {
-            printf("Output Data Data \n");
-            for (int i = 0; i < nameIndex; i++)
-            {
-                std::cout << name[i] << std::endl;
-            }
+            showData();
         }
         else if (mainMenu == 3)
         {
@@ -56,4 +51,33 @@ int main()
     }
 
     return 0;
+}
+
+void addData(int banyakData)
+{
+    for (size_t i = 0; i < banyakData; i++)
+    {
+        cin.ignore();
+        cout << mainIndex;
+        printf("Masukan Nama = ");
+        getline(cin, name[mainIndex]);
+
+        printf("Masukan NIM = ");
+        getline(cin, nim[mainIndex]);
+        mainIndex++;
+
+    }
+}
+
+void showData()
+{
+    int num;
+    printf("Output Data Data \n");
+    for (int i = 0; i < mainIndex; i++)
+    {
+        cout << i + 1;
+        std::cout << " Nama : " << name[i] << std::endl;
+        std::cout << "Nama : " << nim[i] << std::endl
+                  << "\n";
+    }
 }
