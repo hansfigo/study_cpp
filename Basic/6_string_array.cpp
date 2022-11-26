@@ -37,6 +37,9 @@ int main()
             printf("Input Banyak Matkul = ");
             cin >> banyakData;
             addMatkul(banyakData);
+
+            mainIndex++;
+
         }
 
         // USER SHOW DATA
@@ -73,7 +76,6 @@ void addData(int banyakData)
 
         printf("Masukan NIM = ");
         getline(cin, nim[mainIndex]);
-        mainIndex++;
     }
 }
 
@@ -81,14 +83,17 @@ void addMatkul(int banyakData){
     for (size_t i = 0; i < banyakData; i++)
     {
         cin.ignore();
-        
+        printf("Nama Matkul = ");
+        getline(cin, namaMatkul[mainIndex][i]);
+
+        printf("Nilai = ");
+        cin >> nilaiMatkul[mainIndex][i];
     }
     
 }
 
 void showData()
 {
-    int num;
     printf("Output Data Data \n");
     for (int i = 0; i < mainIndex; i++)
     {
