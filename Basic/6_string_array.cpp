@@ -103,8 +103,8 @@ void showData()
 
         for (int j = 0; j < mainIndex; j++)
         {
-            std::cout << " Matkul : " << namaMatkul[j][i] << "\n";
-            std::cout << " Nilai : " << nilaiMatkul[j][i];
+            std::cout << " Matkul : " << namaMatkul[i]<< endl;
+            std::cout << " Nilai : " << nilaiMatkul[i]<< endl;
         }
     }
 }
