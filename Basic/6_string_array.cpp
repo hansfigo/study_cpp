@@ -101,7 +101,7 @@ void showData()
                   << "\n";
         std::cout << " -------------------------------------------- " << std::endl;
 
-        for (int j = 0; j < mainIndex; i++)
+        for (int j = 0; j < mainIndex; j++)
         {
             std::cout << " Matkul : " << namaMatkul[j][i] << "\n";
             std::cout << " Nilai : " << nilaiMatkul[j][i];
