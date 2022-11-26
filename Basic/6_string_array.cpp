@@ -14,7 +14,7 @@ int mainMenu;
 
 void addData(int banyakData);
 void addMatkul(int banyakData);
-void OutputData();
+void showData();
 
 int main()
 {
@@ -33,13 +33,6 @@ int main()
             printf("Input Banyak Data = ");
             cin >> banyakData;
             addData(banyakData);
-
-            printf("Input Banyak Matkul = ");
-            cin >> banyakData;
-            addMatkul(banyakData);
-
-            mainIndex++;
-
         }
 
         // USER SHOW DATA
@@ -48,7 +41,7 @@ int main()
             showData();
         }
 
-        //USER EXIT PROGRAM
+        // USER EXIT PROGRAM
         else if (mainMenu == 3)
         {
             return 0;
@@ -76,10 +69,16 @@ void addData(int banyakData)
 
         printf("Masukan NIM = ");
         getline(cin, nim[mainIndex]);
+
+        printf("Masukan Banyak Matkul = ");
+        cin >> banyakData;
+        addMatkul(banyakData);
+        mainIndex++;
     }
 }
 
-void addMatkul(int banyakData){
+void addMatkul(int banyakData)
+{
     for (size_t i = 0; i < banyakData; i++)
     {
         cin.ignore();
@@ -89,7 +88,6 @@ void addMatkul(int banyakData){
         printf("Nilai = ");
         cin >> nilaiMatkul[mainIndex][i];
     }
-    
 }
 
 void showData()
@@ -99,7 +97,14 @@ void showData()
     {
         cout << i + 1;
         std::cout << " Nama : " << name[i] << std::endl;
-        std::cout << "Nama : " << nim[i] << std::endl
+        std::cout << "NIM : " << nim[i] << std::endl
                   << "\n";
+        std::cout << " -------------------------------------------- " << std::endl;
+
+        for (int j = 0; j < mainIndex; i++)
+        {
+            std::cout << " Matkul : " << namaMatkul[j][i] << "\n";
+            std::cout << " Nilai : " << nilaiMatkul[j][i];
+        }
     }
 }
