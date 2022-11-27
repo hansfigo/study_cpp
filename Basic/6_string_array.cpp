@@ -7,6 +7,7 @@ string name[100];
 string nim[100];
 string namaMatkul[100][100];
 int nilaiMatkul[100][100];
+int banyakMatkul[200];
 int mainIndex = 0;
 int banyakData;
 int loop = 0;
@@ -72,6 +73,7 @@ void addData(int banyakData)
 
         printf("Masukan Banyak Matkul = ");
         cin >> banyakData;
+        banyakMatkul[mainIndex] = banyakData;
         addMatkul(banyakData);
         mainIndex++;
     }
@@ -92,6 +94,8 @@ void addMatkul(int banyakData)
 
 void showData()
 {
+    int nilaiTop  = 0;
+    string nameTop ;
     printf("Output Data Data \n");
     for (int i = 0; i < mainIndex; i++)
     {
@@ -100,11 +104,23 @@ void showData()
         std::cout << "NIM : " << nim[i] << std::endl
                   << "\n";
         std::cout << " -------------------------------------------- " << std::endl;
+        std::cout << " MATKUL" << std::endl;
+        std::cout << " -------------------------------------------- " << std::endl;
 
-        for (int j = 0; j < mainIndex; j++)
+        for (int j = 0; j < banyakMatkul[i]; j++)
         {
-            std::cout << " Matkul : " << namaMatkul[i]<< endl;
-            std::cout << " Nilai : " << nilaiMatkul[i]<< endl;
+            std::cout << " Matkul : " << namaMatkul[i][j] << endl;
+            std::cout << " Nilai : " << nilaiMatkul[i][j] << endl;
+
+            if (nilaiMatkul[i][j] > nilaiTop)
+            {
+                nameTop = name[i];
+                nilaiTop = nilaiMatkul[i][j];
+            }
         }
     }
+    std::cout << " -------------------------------------------- " << std::endl;
+    cout << "Nilai Tertinggi "  << endl;
+    cout << "Nama = " << nameTop << endl;
+    cout << "Nilai = " << nilaiTop << endl;
 }
