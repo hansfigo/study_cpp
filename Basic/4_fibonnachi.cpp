@@ -1,8 +1,9 @@
 #include <iostream>
 
-int row;
-void fibonnachi(int row);
-void Reversefibonnachi(int row);
+int space, rows;
+void fibonnachi(int rows);
+void Reversefibonnachi(int rows);
+void pyramid(int rows);
 char loop = 'y';
 
 int main()
@@ -11,18 +12,22 @@ int main()
     do
     {
         printf("Enter Row :");
-        std::cin >> row;
+        std::cin >> rows;
 
-        fibonnachi(row);
+        fibonnachi(rows);
 
-        for (int z = 0; z <= row; z++)
+        for (int z = 0; z <= rows; z++)
         {
             printf("*");
         }
         printf("\n");
 
-        Reversefibonnachi(row);
+        Reversefibonnachi(rows);
         printf("\n");
+
+        pyramid(rows);
+        printf("\n");
+
         printf("Ulang ?? (y/n)");
         std::cin >> loop;
     } while (loop == 'y');
@@ -30,9 +35,9 @@ int main()
     return 0;
 }
 
-void fibonnachi(int row)
+void fibonnachi(int rows)
 {
-    for (int i = 0; i < row; i++)
+    for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j <= i; j++)
         {
@@ -42,14 +47,32 @@ void fibonnachi(int row)
     }
 }
 
-void Reversefibonnachi(int row)
+void Reversefibonnachi(int rows)
 {
-    for (int i = 0; i < row; i++)
+    for (int i = rows; i > 0; i--)
     {
-        for (int j = row; j > i; j--)
+        for (int j = 0; j < i; j++)
         {
             printf("*");
         }
         printf("\n");
+    }
+}
+
+void pyramid(int rows)
+{
+    for (int i = 1, k = 0; i <= rows; ++i, k = 0)
+    {
+        for (space = 1; space <= rows - i; ++space)
+        {
+            std::cout << "  ";
+        }
+
+        while (k != 2 * i - 1)
+        {
+            std::cout << "* ";
+            ++k;
+        }
+        std::cout << std::endl;
     }
 }
