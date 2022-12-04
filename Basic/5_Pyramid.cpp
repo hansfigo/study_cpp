@@ -1,9 +1,9 @@
 #include <iostream>
 
 int space, rows;
-void fibonnachi(int rows);
-void Reversefibonnachi(int rows);
-void pyramid(int rows);
+void LeftPyramid(int rows);
+void ReversePyramid(int rows);
+void MidPyramid(int rows);
 char loop = 'y';
 
 int main()
@@ -14,7 +14,7 @@ int main()
         printf("Enter Row :");
         std::cin >> rows;
 
-        fibonnachi(rows);
+        LeftPyramid(rows);
 
         for (int z = 0; z <= rows; z++)
         {
@@ -22,10 +22,10 @@ int main()
         }
         printf("\n");
 
-        Reversefibonnachi(rows);
+        ReversePyramid(rows);
         printf("\n");
 
-        pyramid(rows);
+        MidPyramid(rows);
         printf("\n");
 
         printf("Ulang ?? (y/n)");
@@ -35,7 +35,7 @@ int main()
     return 0;
 }
 
-void fibonnachi(int rows)
+void LeftPyramid(int rows)
 {
     for (int i = 0; i < rows; i++)
     {
@@ -47,7 +47,7 @@ void fibonnachi(int rows)
     }
 }
 
-void Reversefibonnachi(int rows)
+void ReversePyramid(int rows)
 {
     for (int i = rows; i > 0; i--)
     {
@@ -59,7 +59,7 @@ void Reversefibonnachi(int rows)
     }
 }
 
-void pyramid(int rows)
+void MidPyramid(int rows)
 {
     for (int i = 1, k = 0; i <= rows; ++i, k = 0)
     {
