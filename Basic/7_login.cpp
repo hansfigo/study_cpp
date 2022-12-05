@@ -4,23 +4,25 @@
 // using namespace std;
 
 std::string username[100][100], password[100][100], name;
-char isTrueSignUp = 'f', isLogin = 'f', isRepeat = 'y';
+char isTrueSignUp, isLogin = 'f', isRepeat = 'y';
 int x, mainIndex = 1;
 
 void signUp();
 void showData();
+bool checkEmpty();
+void login();
 
 int main()
 {
     int inputMenu;
 
-    printf("Choose Menu");
     while (isRepeat = 'y')
     {
-        while (isLogin = 't')
+        printf("Choose Menu \n");
+        while (isLogin == 't')
         {
-            printf("1.Show Data");
-            printf("2. Logout");
+            printf("1.Show Data \n");
+            printf("2.Logout \n");
             std::cin >> inputMenu;
 
             if (inputMenu == 1)
@@ -33,8 +35,8 @@ int main()
             }
         }
 
-        printf("1.Sign Up");
-        printf("2.Sign In");
+        printf("1.Sign Up \n");
+        printf("2.Sign In \n");
         std::cin >> inputMenu;
 
         if (inputMenu == 1)
@@ -43,33 +45,78 @@ int main()
         }
         else
         {
-            showData();
+            if (checkEmpty())
+            {
+                printf("Empty Data \n");
+            }else{
+                printf("Masuk Login \n");
+            }
+            
         }
     }
 }
 
 void signUp()
 {
-    for (int i = 1; i <= mainIndex; i++)
-        do
-        {
-            {
-                printf("Input Username : ");
-                std::getline(std::cin, username[mainIndex][i]);
+    do
+    {
+        std::cin.ignore();
+        printf("Input Username : \n");
+        std::getline(std::cin, username[mainIndex][1]);
 
-                printf("Input Password : ");
-                std::getline(std::cin, password[mainIndex][i]);
+        printf("Input Password : \n");
+        std::getline(std::cin, password[mainIndex][1]);
 
-                printf("is the data above correct? (y/n)");
-                std::getline(std::cin, password[mainIndex][i]);
-            }
-        } while (isTrueSignUp == 'f' || 'F');
+        printf("is the data above correct? (y/n)");
+        std::cin >> isTrueSignUp;
+    } while (isTrueSignUp == 'n');
+    mainIndex++;
+    isLogin = 't';
 }
 void showData()
 {
     for (int i = 1; i <= mainIndex; i++)
     {
-        std::cout << username[i][mainIndex] << std::endl;
-        std::cout << password[i][mainIndex] << std::endl;
+        for (int j = 1; j <= i; j++)
+        {
+            std::cout << username[i][j];
+        }
+        printf("\n");
     }
+}
+bool checkEmpty(){
+    for (int i = 1; i <= 100; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            if(username[i][j] != ""){
+                return false;
+            }
+        }
+        
+    }
+    return true;
+}
+void login(){
+    std::string loginUsername, loginPassword;
+
+    std::cin.ignore();
+    printf("Username :  \n");
+    getline(std::cin, loginUsername);
+    printf("Password :  \n");
+    getline(std::cin, loginPassword);
+
+    for (int i = 1; i <= mainIndex; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            // if (/* condition */)
+            // {
+            //     /* code */
+            // }
+            
+        }
+        
+    }
+    
 }
