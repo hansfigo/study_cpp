@@ -6,21 +6,25 @@
 std::string username[100][100], password[100][100], name;
 char isTrueSignUp, isRepeat = 'y';
 int x, mainIndex = 1;
-bool isLogin;
+bool login;
+bool isLogin();
 
 void signUp();
 void showData();
 bool checkEmpty();
-void login();
 
 int main()
 {
+
     int inputMenu;
+    // login = isLogin();
+    // std::cout << login;
 
     while (isRepeat = 'y')
     {
+        std::cout << mainIndex;
         printf("Choose Menu \n");
-        while (isLogin == true)
+        while (login == true)
         {
             printf("1.Show Data \n");
             printf("2.Logout \n");
@@ -32,7 +36,7 @@ int main()
             }
             else
             {
-                isLogin = false;
+                login = false;
             }
         }
 
@@ -44,7 +48,7 @@ int main()
         {
             signUp();
         }
-        else
+        else // Sign In
         {
             if (checkEmpty())
             {
@@ -53,7 +57,16 @@ int main()
             else
             {
                 printf("Masuk Login \n");
-                login();
+                login = isLogin();
+
+                if (login == true)
+                {
+                    printf("Access Granted \n");
+                }
+                else
+                {
+                    printf("Access Denied \n");
+                }
             }
         }
     }
@@ -82,7 +95,7 @@ void showData()
     {
         for (int j = 1; j <= i; j++)
         {
-            std::cout << username[i][j];
+            std::cout << i << " - " << username[i][j];
         }
         printf("\n");
     }
@@ -101,42 +114,42 @@ bool checkEmpty()
     }
     return true;
 }
-void login()
+
+bool isLogin()
 {
     std::string loginUsername, loginPassword;
-    bool loginLoop = true;
-    while (loginLoop == true)
-    {
-        std::cin.ignore();
-        printf("Username :  \n");
-        getline(std::cin, loginUsername);
-        printf("Password :  \n");
-        getline(std::cin, loginPassword);
+    // bool loginLoop = true;
 
-        for (int i = 1; i <= mainIndex; i++)
+    printf("Username :  \n");
+    std::cin >> loginUsername;
+
+    printf("Password :  \n");
+    std::cin >> loginPassword;
+    ;
+
+    for (int i = 1; i <= mainIndex; i++)
+    {
+        for (int j = 1; j <= i; j++)
         {
-            for (int j = 1; j <= i; j++)
+            if (loginUsername == username[i][j] && loginPassword == password[i][j])
             {
-                if (loginUsername == username[i][j])
-                {
-                    if (loginPassword == password[i][j])
-                    {
-                        printf("login succesfull \n");
-                        isLogin = true;
-                        loginLoop = false;
-                    }
-                    else
-                    {
-                        printf("Incorrect password \n");
-                        break;
-                    }
-                }
-                else
-                {
-                    printf("Incorrect username \n");
-                    break;
-                }
+                return true;
+                // loginLoop = false;
             }
         }
     }
+    return false;
 }
+
+// bool isLogin()
+// {
+//     std::string loginUsername, loginPassword;
+
+//     printf("Username :  \n");
+//     getline(std::cin, loginUsername);
+
+//     printf("Password : \n");
+//     getline(std::cin, loginPassword);
+
+//     return false;
+// }
