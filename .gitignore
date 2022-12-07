@@ -1,3 +1,5 @@
 *.exe
 .vscode/
 kuliah/
+.tempCodeRunnerFile.cpp
+random/
