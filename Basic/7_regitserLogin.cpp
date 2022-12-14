@@ -20,7 +20,7 @@ int main()
     // login = isLogin();
     // std::cout << login;
 
-    while (isRepeat = 'y')
+    while (isRepeat == 'y')
     {
         std::cout << mainIndex;
         printf("Choose Menu \n");

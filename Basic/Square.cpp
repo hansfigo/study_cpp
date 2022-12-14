@@ -6,17 +6,17 @@ int main()
 {
 
     printf("input length = ");
-    std::cin>>lenght;
+    std::cin >> lenght;
 
-    for (int i = 0; i < lenght; i++)
-    {
-        for (int j = 0; j < lenght; j++)
-        {
-            printf("* ");
-        }
-        printf("\n");
-    }
-    
-    
+
+    // for (int i = 0; i < lenght; i++)
+    // {
+    //     for (int j = 1; j <= lenght; j++)
+    //     {
+    //         std::cout<<"*"<< " ";
+    //     }
+    //     printf("\n");
+    // }
+
     return 0;
 }
