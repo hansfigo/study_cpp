@@ -1,5 +1,5 @@
 *.exe
 .vscode/
-kuliah/
+# kuliah/
 .tempCodeRunnerFile.cpp
-random/
+# random/
