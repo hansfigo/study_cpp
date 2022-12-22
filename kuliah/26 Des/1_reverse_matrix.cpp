@@ -5,7 +5,7 @@ const int arr[5][5] = {{1, 2, 3}, {4, 5, 6}};
 
 int main()
 {
-    printf("Input the matrix \n");
+    printf("Input the matrix\n");
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -15,7 +15,7 @@ int main()
         printf("\n");
     }
 
-    printf("\nTranspose \n");
+    printf("\nTranspose\n");
     for (int i = 0; i < 3; i++)
     {
         std::cout << arr[0][i] << " " << arr[1][i] << std::endl;
