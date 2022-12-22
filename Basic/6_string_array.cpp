@@ -94,33 +94,33 @@ void addMatkul(int banyakData)
 
 void showData()
 {
-    int nilaiTop  = 0;
-    string nameTop ;
-    printf("Output Data Data \n");
-    for (int i = 0; i < mainIndex; i++)
-    {
-        cout << i + 1;
-        std::cout << " Nama : " << name[i] << std::endl;
-        std::cout << "NIM : " << nim[i] << std::endl
-                  << "\n";
-        std::cout << " -------------------------------------------- " << std::endl;
-        std::cout << " MATKUL" << std::endl;
-        std::cout << " -------------------------------------------- " << std::endl;
+    // int nilaiTop  = 0;
+    // string nameTop ;
+    // printf("Output Data Data \n");
+    // for (int i = 0; i < mainIndex; i++)
+    // {
+    //     cout << i + 1;
+    //     std::cout << " Nama : " << name[i] << std::endl;
+    //     std::cout << "NIM : " << nim[i] << std::endl
+    //               << "\n";
+    //     std::cout << " -------------------------------------------- " << std::endl;
+    //     std::cout << " MATKUL" << std::endl;
+    //     std::cout << " -------------------------------------------- " << std::endl;
 
-        for (int j = 0; j < banyakMatkul[i]; j++)
-        {
-            std::cout << " Matkul : " << namaMatkul[i][j] << endl;
-            std::cout << " Nilai : " << nilaiMatkul[i][j] << endl;
+    //     for (int j = 0; j < banyakMatkul[i]; j++)
+    //     {
+    //         std::cout << " Matkul : " << namaMatkul[i][j] << endl;
+    //         std::cout << " Nilai : " << nilaiMatkul[i][j] << endl;
 
-            if (nilaiMatkul[i][j] > nilaiTop)
-            {
-                nameTop = name[i];
-                nilaiTop = nilaiMatkul[i][j];
-            }
-        }
-    }
-    std::cout << " -------------------------------------------- " << std::endl;
-    cout << "Nilai Tertinggi "  << endl;
-    cout << "Nama = " << nameTop << endl;
-    cout << "Nilai = " << nilaiTop << endl;
+    //         if (nilaiMatkul[i][j] > nilaiTop)
+    //         {
+    //             nameTop = name[i];
+    //             nilaiTop = nilaiMatkul[i][j];
+    //         }
+    //     }
+    // }
+    // std::cout << " -------------------------------------------- " << std::endl;
+    // cout << "Nilai Tertinggi "  << endl;
+    // cout << "Nama = " << nameTop << endl;
+    // cout << "Nilai = " << nilaiTop << endl;
 }
