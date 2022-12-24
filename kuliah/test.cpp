@@ -3,17 +3,35 @@
 // 22.12.2321
 
 #include <iostream>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <conio.h>
+#include <ctype.h>
 
-double r,z;
+using namespace std;
+
+int input;
 
 int main()
 {
-    printf("Masukan Jari Jari :");
-    std::cin >> r;
-    std::cout << "Lingakaran dengan jari jari " << r << std::endl;
+    system("cls");
 
-    std::cout << "Luas : " << 3.14*r*r << std::endl;
-    std::cout << "Keliling : " << 3.14*r*2 << std::endl;
+    do
+    {
+        printf("Hello \n");
+        input = _getch();
+        input = toupper(input);
+    } while (input != 'Y');
+
+    cout << input;
+    // printf("\nKey struck was '%c'\n", _getch());
+    // while (input != "q" || input != "Q")
+    // {
+    //     printf("Input Pesan :");
+    //     cin >> input;
+    // }
 
     return 0;
 }
