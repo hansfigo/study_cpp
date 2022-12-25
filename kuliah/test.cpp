@@ -12,26 +12,20 @@
 
 using namespace std;
 
+string username;
 int input;
 
 int main()
 {
     system("cls");
 
-    do
+    while (input != 'N')
     {
-        printf("Hello \n");
+        cout << "Masukan Input ";
         input = _getch();
         input = toupper(input);
-    } while (input != 'Y');
-
-    cout << input;
-    // printf("\nKey struck was '%c'\n", _getch());
-    // while (input != "q" || input != "Q")
-    // {
-    //     printf("Input Pesan :");
-    //     cin >> input;
-    // }
-
+        cout << input << endl;
+    }
+    
     return 0;
 }
