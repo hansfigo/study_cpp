@@ -16,18 +16,25 @@
 
 using namespace std;
 
-int hp, copper, silver, gold, coin, med;
-int isGameOver;
-string user, userName, dif;
+int hp, copper, silver, gold, coin, med, earnings[20], scoreIndex = 0;
+int isGameOver, user;
+string userName[20], dif;
 
+void mainMenu();
+void leaderboard();
+void askUsername();
 void mine();
 void difficultyMenu();
 void homeMenu();
 void town();
 void random();
 void sell();
+void buyMed();
 void saveGame();
-void loadGame();
+void useMedkit();
+void gameOver();
+void log();
+void isExit();
 
 int main(int argc, char const *argv[])
 {
@@ -37,30 +44,76 @@ int main(int argc, char const *argv[])
     gold = 0;
     hp = 0;
     coin = 0;
-    med = 0;
 
     do
     {
-        system("cls");
+        mainMenu();
 
-        cout << "Hello!!\nWelcome to our minigames\n";
-        Sleep(600);
-        cout << "Please input your name : ";
-        getline(cin, userName);
+        scoreIndex += 1;
 
-        // Ask user difficulty
-        difficultyMenu();
+        gameOver();
 
-        homeMenu();
-
-        system("cls");
-        cout << "Game Over !! \nContinue? (y/n)";
-        isGameOver = _getch();
-        isGameOver = toupper(isGameOver);
-        system("cls");
     } while (isGameOver != 'N');
 
     return 0;
+}
+
+void mainMenu()
+{
+    int user = ' ';
+    while (user != 'Q')
+    {
+        system("cls");
+
+        cout << "Hello!!\nWelcome to our minigames\nSelect Menu\n[1]New Game\n[2]Leaderboard";
+        user = _getch();
+        user = toupper(user);
+
+        if (user == '1')
+        {
+
+            askUsername();
+            difficultyMenu();
+            homeMenu();
+            user = 'Q';
+
+            break;
+        }
+        else if (user == '2')
+        {
+            leaderboard();
+        }
+    }
+}
+
+void askUsername()
+{
+    system("cls");
+    Sleep(600);
+    cout << "Please input your name : ";
+    getline(cin, userName[scoreIndex]);
+}
+
+void leaderboard()
+{
+    system("cls");
+
+    if (earnings[0] == 0)
+    {
+        cout << "No Records \n";
+        Sleep(1000);
+        system("cls");
+    }
+    else
+    {
+        cout << "LeaderBoard :\n";
+        for (int i = 0; i < scoreIndex; i++)
+        {
+            cout << i + 1 << " " << userName[i] << " = " << earnings[i] << endl;
+        }
+        cout << "\n\nPress any key to return\n";
+        _getch();
+    }
 }
 
 void difficultyMenu()
@@ -71,68 +124,87 @@ void difficultyMenu()
     cout << "Select Dificulty\n[1]Normal\n[2]Hard" << endl;
     user = _getch();
 
-    if (user == "1")
+    if (user == '1')
     {
-        hp = 5, coin = 5;
+        hp = 5, coin = 5, med = 2;
         dif = "Normal";
     }
 
-    if (user == "2")
+    if (user == '2')
     {
-        hp = 3, coin = 0;
+        hp = 3, coin = 0, med = 0;
         dif = "Hard";
     }
 }
 
 void homeMenu()
 {
-    system("cls");
-    Sleep(200);
-    user = " ";
-    system("cls");
 
-    while (user != "q")
+    while (user != 'Q')
     {
-        cout << "Difficulty : " << dif << endl;
-        cout << "Welcome Home " << userName << "\nSelect Actions\n[1]Mine\n[2]Town\n[3]Save" << endl;
-        cout << "\n\n\n\n\n"
-             << "Copper :" << copper << "  Silver :" << silver << "  Gold :" << gold << "\nCoin : " << coin << endl;
-        cout << "\nPress Q to Exit Game " << endl;
-        user = _getch();
+        system("cls");
+        Sleep(200);
+        user = ' ';
+        system("cls");
 
-        if (user == "1")
+        cout << "Difficulty : " << dif << endl;
+        cout << "Welcome Home " << userName[scoreIndex] << "\nSelect Actions\n[1]Mine\n[2]Town" << endl;
+        cout << "\n\n\n\n\n"
+             << "Copper :" << copper << "  Silver :" << silver << "  Gold :" << gold << "\nCoin : " << coin << "   HP : " << hp << endl;
+        cout << "\nEarning :" << earnings[scoreIndex] << endl;
+        cout << "\n\nPress Q to Exit Game " << endl;
+        user = _getch();
+        user = toupper(user);
+
+        if (user == '1')
         {
             mine();
             if (isGameOver == 'N')
             {
-                user = "q";
+                user = 'Q';
                 break;
             }
         }
-        else if (user == "2")
+        else if (user == '2')
         {
             town();
         }
-        else if (user == "3")
+        else if (user == 'H')
         {
-            saveGame();
+            system("cls");
+            useMedkit();
+            system("cls");
+        }
+        else if (user == 'Q')
+        {
+            system("cls");
+            cout << "Are u Sure ? (y/n)";
+            user = _getch();
+            user = toupper(user);
+
+            if (user == 'Y')
+            {
+                system("cls");
+                break;
+            }
+            else
+            {
+                system("cls");
+                user = ' ';
+            }
         }
     }
-
-    cout << "log";
 }
+
 void mine()
 {
 
-    int isMining;
-    int isGameOverMine;
+    int isMining, isGameOverMine;
+    bool isUseMed;
     do
     {
         do
         {
-
-            /* code */
-
             while (!_kbhit())
             {
                 system("cls");
@@ -148,24 +220,35 @@ void mine()
                 system("cls");
                 cout << "Mining..." << endl;
                 random();
-                if (hp <= 0)
-                {
-                    isGameOverMine = 'N';
-                    break;
-                    _kbhit;
-                }
+
                 cout << "\n\n\nHp : " << hp << "     Press Q to Exit";
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
 
+                if (hp <= 0)
+                {
+                    if (isUseMed == true)
+                    {
+                        useMedkit();
+                        isUseMed = false;
+                    }
+                    else
+                    {
+                        isGameOverMine = 'N';
+                        break;
+                        _kbhit;
+                    }
+                }
                 Sleep(1000);
                 system("cls");
             }
-            cout << isGameOverMine;
 
             if (isGameOverMine == 'N')
             {
-                isGameOver = isGameOverMine;
                 system("cls");
+                cout << "You are dead !!";
+                Sleep(1000);
+                isGameOver = isGameOverMine;
+                // system("cls");
                 break;
             }
             else
@@ -177,30 +260,21 @@ void mine()
                     isMining = 'Q';
                     break;
                 }
-                else if (input == 'H')
-                {
-                    if (med > 0)
-                    {
-                        med -= 1;
-                        hp += 2;
-                        cout << "-1 Med";
 
-                        if (hp >= 5)
-                        {
-                            hp = 5;
-                        }
-                    }
-                    else
-                    {
-                        cout << "You Have No Medkit :(";
-                        Sleep(600);
-                    }
+                if (input == 'H')
+                {
+                    useMedkit();
+                    isUseMed = true;
                 }
             }
 
         } while (hp <= 0);
 
-        break;
+        if (hp <= 0)
+        {
+            break;
+        }
+
     } while (isMining != 'Q');
 }
 
@@ -211,27 +285,62 @@ void town()
     bool status = false;
     while (!status)
     {
-        user = " ";
+        user = ' ';
         cout << "You're in Town\nSelect Action\n[1]Sell\n[2]Buy Med\n[3]Go Home" << endl;
         user = _getch();
-        if (user == "1")
+        if (user == '1')
         {
             sell();
         }
-        if (user == "2")
+        if (user == '2')
         {
-            cout << "Buy one med for 3 coins? (y/n) ";
+            buyMed();
+        }
+        if (user == '3')
+        {
+            status = true;
+        }
+    }
+}
 
-            string isBuy;
-            while (isBuy != "N")
+void sell()
+{
+    system("cls");
+    int oldCoin = coin;
+    coin += (gold * 5) + (silver * 3) + (copper * 1);
+    cout << "Alhamdullilah dapet +" << coin - oldCoin << endl;
+    Sleep(1000);
+    copper = 0;
+    silver = 0;
+    gold = 0;
+    earnings[scoreIndex] += coin;
+    system("cls");
+}
+
+void buyMed()
+{
+
+    if (coin != 0)
+    {
+        int isBuy;
+        
+        while (isBuy != 'n')
+        {
+            int max = coin / 2;
+            system("cls");
+            cout << "Buy med ? (y/n)\n[1]One Med\n[2]Max (" << max << " meds)";
+            isBuy = _getch();
+            if (coin >= 2)
             {
-                if (coin <= 2)
+                if (isBuy == '1')
                 {
                     system("cls");
 
-                    cout << "Not Enough Coins !!";
+                    cout << "Success !!\n+1 Med";
                     Sleep(600);
-                    isBuy = "N";
+                    med += 1;
+                    coin -= 2;
+                    isBuy = 'N';
 
                     system("cls");
                 }
@@ -239,20 +348,30 @@ void town()
                 {
                     system("cls");
 
-                    cout << "Success !!";
-                    Sleep(600);
-                    med += 1;
-                    coin -= 2;
-                    isBuy = "N";
+                    coin -= max * 2;
+                    med += max;
 
+                    cout << "Success !!\n+ " << max << " med "
+                         << "\n-" << max * 2 << " coins";
+                    Sleep(600);
                     system("cls");
                 }
             }
+            else
+            {
+                system("cls");
+
+                cout << "Not Enough Coins !!";
+                Sleep(600);
+
+                system("cls");
+            }
         }
-        if (user == "3")
-        {
-            status = true;
-        }
+    }
+    else
+    {
+        cout << "You dont Have Money !!\n\n\nPress any Key to Continue...";
+        _getch();
     }
 }
 
@@ -278,11 +397,11 @@ void random()
         Sleep(200);
         copper += 1;
     }
-    else if (random > 26 && random <= 90)
+    else if (random > 26 && random <= 50)
     {
-        cout << "You've Encountered an Enemy !!";
-        Sleep(400);
-        hp -= 6;
+        cout << "You've Encountered an Enemy !!\nhp-2!!";
+        Sleep(600);
+        hp -= 2;
 
         if (hp <= 0)
         {
@@ -296,16 +415,52 @@ void random()
     }
 }
 
-void sell()
+void useMedkit()
+{
+    if (med >= 0)
+    {
+
+        if (hp >= 5)
+        {
+            system("cls");
+            cout << "+0 HP";
+            Sleep(400);
+            system("cls");
+            hp = 5;
+        }
+        else
+        {
+            system("cls");
+            cout << "+1 HP";
+            Sleep(400);
+            system("cls");
+            med -= 1;
+            hp += 2;
+        }
+    }
+    else
+    {
+        system("cls");
+        cout << "You don't have Medkit !!";
+        Sleep(400);
+        system("cls");
+    }
+}
+
+void log()
 {
     system("cls");
-    int oldCoin = coin;
-    coin += (gold * 5) + (silver * 3) + (copper * 1);
-    cout << "Alhamdullilah dapet +" << coin - oldCoin << endl;
+    cout << "Log";
     Sleep(1000);
-    copper = 0;
-    silver = 0;
-    gold = 0;
+    system("cls");
+}
+
+void gameOver()
+{
+    system("cls");
+    cout << "Game Over !! \nContinue? (y/n)";
+    isGameOver = _getch();
+    isGameOver = toupper(isGameOver);
     system("cls");
 }
 
