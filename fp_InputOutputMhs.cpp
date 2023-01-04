@@ -18,28 +18,27 @@ void showData();
 int main()
 {
 
-    while (user != '3')
+    while (user != '3')//Selama input user tidak = 3 maka akan menjalankan kode blok berikut
     {
         user = ' ';
-        system("cls");
+        system("cls");//clear Screen
 
         cout << "PROGRAM DATA MAHASISWA" << endl;
         cout << "\nPILIH MENU : " << endl;
         cout << "1.Input Data " << endl;
         cout << "2.Output Data " << endl;
         cout << "3.Keluar " << endl;
-        user = _getch();
+        user = _getch();// getch merupakan fungsi untuk menangkap character input dari keyboard
 
-        // JIKA INPUT 1 MAKA AKAN MENAMBAHKAN DATA
+        // Jika input user 1 maka menambahkan Data
         if (user == '1')
         {
-            // Masuk Fungsi Add Data
-            addData();
+            addData();// Panggil Fungsi addData, untuk menambahkan data mahasiswa
         }
-        // JIKA INPUT 2 MAKA AKAN MENAMPILKAN DATA
+        // Jika input user 2 maka menampilkan Data
         else if (user == '2')
         {
-            showData();
+            showData();// Panggil Fungsi showData, untuk menampilkan data mahasiswa
         }
         else
         {
@@ -57,13 +56,12 @@ void addData()
     cout << "Input Banyak Data : ";
     cin >> banyakData; // User Menginputkan jumlah data
 
-    // Lalu user memasukan Nama, NIM, dan Prodi sebanyak input jumlah data tadi
     cin.ignore();
 
     system("cls");
     cout << "Masukan Data\n";
 
-    for (int i = 0; i < banyakData; i++)
+    for (int i = 0; i < banyakData; i++)// for loop sebanyak banyakData
     {
         cout << "\nData ke\t:" << mainIndex + 1 << endl;
         cout << "Masukan Nama\t:";
@@ -101,7 +99,7 @@ void showData()
         }
         cout << "Tekan 'Q' untuk kembali ke Menu Utama";
 
-        user = _getch();
-        user = toupper(user);
+        user = _getch();// tangkap input keyboard
+        user = toupper(user);// tconvert input ke uppercase
     }
 }
