@@ -1,0 +1,26 @@
+STEP 1: start
+STEP 2: WHILE(userInput != 3) THEN
+            INPUT userInput 
+                IF (userInput == ‘1’) THEN
+                    addData();
+                ELSE IF(iserInput == '2') THEN
+                    showData();
+                ENDIF
+        ENDWHILE
+STEP 3:END
+
+Function addData()
+    INPUT banyakData
+    FOR 0 to banyaData THEN
+        INPUT Nama, Nim, Prodi
+        mainIndex++
+    ENDFOR
+
+Function showData()
+    WHILE(userInput != 'Q') THEN
+        FOR 0 to mainIndex then
+            OUTPUT Nama, Nim, Prodi
+        ENDFOR
+    ENDWHILE
+
+
